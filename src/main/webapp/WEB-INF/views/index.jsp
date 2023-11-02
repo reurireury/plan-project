@@ -8,9 +8,15 @@
 
 </head>
 <body>
+<<<<<<< HEAD
 	<nav>
  		<jsp:include page="include/nav.jsp"/>
 	</nav>
+=======
+	<header>
+ 	yeon에서 수정1
+	</header>
+>>>>>>> refs/heads/yeon
 	<main>
 	</main>
 	<footer>
