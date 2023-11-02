@@ -2,6 +2,8 @@ package com.spring.market_1;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.servlet.ModelAndView;
 
 public interface ObjectController 
