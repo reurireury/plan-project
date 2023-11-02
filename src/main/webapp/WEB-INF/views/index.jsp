@@ -16,7 +16,6 @@
 	<header>
  	yeon에서 수정1
 	</header>
->>>>>>> refs/heads/yeon
 	<main>
 	</main>
 	<footer>
