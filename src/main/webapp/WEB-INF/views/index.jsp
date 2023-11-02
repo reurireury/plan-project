@@ -9,7 +9,7 @@
 </head>
 <body>
 	<header>
-	 확인1111111111111111111
+ 확인
 	</header>
 	<main>
 	</main>
