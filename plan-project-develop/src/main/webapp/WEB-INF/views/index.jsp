@@ -8,13 +8,13 @@
 
 </head>
 <body>
-<<<<<<< HEAD
+
 	<nav>
  		<jsp:include page="include/nav.jsp"/>
 	</nav>
-=======
+
 	<header>
- 	yeon에서 수정134234234rerewr
+ 	11월 03일 22시 02분 수정w3434
 	</header>
 	<main>
 	</main>
