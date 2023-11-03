@@ -8,13 +8,13 @@
 
 </head>
 <body>
-<<<<<<< HEAD
+
 	<nav>
  		<jsp:include page="include/nav.jsp"/>
 	</nav>
-=======
+
 	<header>
- 	11월 03일 21시 55분 수정
+ 	11월 03일 22시 02분 수정
 	</header>
 	<main>
 	</main>
