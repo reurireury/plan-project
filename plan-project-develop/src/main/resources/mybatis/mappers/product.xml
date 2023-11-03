@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="mapper.product">
+	<resultMap id="proResult" type="productDTO">
+		<result property="p_no" column="p_no"/>
+		<result property="p_name" column="p_name"/>
+		<result property="p_price" column="p_price"/>
+		<result property="p_amount" column="p_amount"/>
+		<result property="p_htis" column="p_htis"/>
+		<result property="p_stat" column="p_stat"/>
+		<result property="p_cate1" column="p_cate1"/>
+		<result property="p_cate2" column="p_cate2"/>
+		<result property="p_like" column="p_like"/>
+		<result property="p_how" column="p_how"/>
+		<result property="p_addr" column="p_addr"/>
+	</resultMap>
+	
+	<select id="selectAllProductList" resultMap="proResult">
+		<![CDATA[select * from m_product order by p_no]]>
+	</select>
+	
+	<!-- 
+	<insert id="insertMember" parameterType="productDTO">
+		<![CDATA[insert into m_member(id, pwd, name, addr, phone) values(#{id}, #{pwd}, #{name}, #{addr}, #{phone})]]>
+	</insert>
+	
+	<delete id="deleteMember" parameterType="int">
+		<![CDATA[delete from  m_member where id = #{id}]]>
+	</delete> -->
+</mapper>
