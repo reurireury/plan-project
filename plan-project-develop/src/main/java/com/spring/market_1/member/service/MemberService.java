@@ -13,7 +13,8 @@ import com.spring.market_1.member.dto.MemberDTO;
 @Service("memberService")
 public class MemberService implements ObjectService 
 {
-
+	@Autowired
+	private MemberDAO memberDAO;
 	@Override
 	public List ListObjects() throws DataAccessException {
 	
@@ -26,11 +27,17 @@ public class MemberService implements ObjectService
 		return null;
 	}
 
+	
 	@Override
 	public int AddObject() throws DataAccessException {
 	
 		return 0;
 	}
+	/*회원가입*/
+	public void AddObject(MemberDTO member) {
+		memberDAO.AddObject(member);
+	}
+	
 
 	@Override
 	public int RemoveObject() throws DataAccessException {
@@ -55,5 +62,6 @@ public class MemberService implements ObjectService
 	
 		return 0;
 	}
+
 	
 }
