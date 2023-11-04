@@ -24,7 +24,7 @@
 				<label>비밀번호</label><input type="password" class="form-control" id="pwd1"  placeholder="8~20자이내로 입력하세요" required>
 			</div>
 			<div class="form-group">
-				<label>비밀번호 확인</label><input type="password" class="form-control" id="pwd2" name="pwd">
+				<label>비밀번호 확인</label><input type="pass word" class="form-control" id="pwd2" name="pwd">
 				<!-- 비밀번호 검증 결과창 -->				
 				<span id="result"></span> 	
 			</div>
@@ -33,6 +33,8 @@
 	       	    <input type="text"  id="name" name="name" placeholder="이름" required>
 	        </div>
 	      	<div class="form-group">
+	            <label for="email">이메일</label>
+	            <input type="text"  id="email" name="email" placeholder="이메일" required>
 	            <label for="email">이메일</label>
 	            <input type="text"  id="email" name="email" placeholder="이메일" required>
 	        </div>
