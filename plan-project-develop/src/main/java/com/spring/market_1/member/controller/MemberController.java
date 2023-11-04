@@ -20,7 +20,11 @@ import com.spring.market_1.member.service.MemberService;
 @Controller("memberController")
 public class MemberController implements ObjectController
 {
-
+	/* @Autowired 필요한 의존 객체타입(생성자,setter,필드)에 맞춰서 해당하는 빈을 찾아 주입 */
+	@Autowired
+    private MemberService memberService;
+	
+	
 	@Override
 	public ModelAndView ListObjects() throws Exception {
 		
@@ -38,6 +42,20 @@ public class MemberController implements ObjectController
 		
 		return null;
 	}
+	/*회원가입*/
+	/* @ModelAttribute form의 데이터 처리할 때 사용 html의 태그명과 dto 일치한 경우 dto에 자동반영 */
+	@RequestMapping(value = "/member/AddObject.do", method = RequestMethod.POST)
+	public ModelAndView AddObject(@ModelAttribute("member") MemberDTO member, HttpServletRequest request,
+	        HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		System.out.println(id);
+		
+		memberService.AddObject(member);
+		
+		
+		return null;
+	}
+
 
 	@Override
 	public ModelAndView RemoveObject() throws Exception {

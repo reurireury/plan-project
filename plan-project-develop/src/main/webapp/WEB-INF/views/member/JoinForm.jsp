@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!-- js 스크립트 -->
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +14,14 @@
  		<jsp:include page="../include/nav.jsp"/>
 	</nav>
 	<main>
-		<form class="Join">
+		<form class="Join" action="${contextPath}/member/AddObject.do" method="post">
 			<div class="form-group">
 				<label>아이디</label><input type="text" class="form-control" id="id" name="id" placeholder="이름" required>
 				<!-- 아이디 유효성 검사 스크립트 -->
 				<button type="button" id="check-id" onclick="check_id()">아이디 확인</button>
 			</div>
 			<div class="form-group">
-				<label>비밀번호</label><input type="password" class="form-control" id="pwd1" name="pwd" placeholder="8~20자이내로 입력하세요" required>
+				<label>비밀번호</label><input type="password" class="form-control" id="pwd1"  placeholder="8~20자이내로 입력하세요" required>
 			</div>
 			<div class="form-group">
 				<label>비밀번호 확인</label><input type="password" class="form-control" id="pwd2" name="pwd">
