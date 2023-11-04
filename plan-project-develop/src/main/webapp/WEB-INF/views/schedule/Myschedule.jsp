@@ -23,7 +23,7 @@
       });
 
     </script>
-<title>내 스케줄 관리</title>
+<title>내 스케줄 관dfgsdfggfsddfgs리</title>
 </head>
 <body>
 	<div id='calendar'></div>
