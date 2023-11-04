@@ -4,11 +4,8 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
-<%
-  request.setCharacterEncoding("UTF-8");
-%>    
-<!DOCTYPE html>
-<html>
+
+
 <head>
 <meta charset="UTF-8">
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
@@ -26,6 +23,9 @@
 <title>내 스케줄 관리페이지</title>
 </head>
 <body>
+	<nav>
+ 		<jsp:include page="../include/nav.jsp"/>
+	</nav>
 	<div id='calendar'></div>
 </body>
 </html>
