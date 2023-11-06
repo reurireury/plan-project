@@ -22,7 +22,7 @@
 				<div>
 					<label for="아이디"></label>
 					<input type="text" name="id" id="id" class="form-control" placeholder="아이디" required="" autofocus="">
-					<label for="비밀번호">비밀번호</label>
+					<label for="비밀번호">비밀번호1</label>
 					<input type="password" name="pwd" id="pwd" class="form-control" placeholder="비밀번호" required="">
 				</div>
 					<div id="loginResult" style="color:red;">
