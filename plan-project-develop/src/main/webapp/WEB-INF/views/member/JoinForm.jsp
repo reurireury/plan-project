@@ -52,6 +52,7 @@
        		<div class="form-group">
 	            <label for="phone">연락처</label>
 	            <input type="text" class="form-control " id="phone" name="phone" placeholder="연락처" required>
+	             <input type="text" class="form-control " id="phone" name="phone" placeholder="연락처" required>
        		</div>
 	        <div class="form-group">
      	       <button type="submit" class="btn btn-success">가입하기</button>
