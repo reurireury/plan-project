@@ -61,22 +61,24 @@ public class ScheduleController implements ObjectController{
 	}
 	
 	@RequestMapping(value = {"/schedule/Myschedule.do",
-},method = RequestMethod.GET)
-public ModelAndView Form(@RequestParam(value = "type", required = false) String type, HttpServletRequest request) throws Exception {
-	ModelAndView mav = new ModelAndView();
-
-	String uri = request.getRequestURI();
-	System.out.println(uri); ///plan/schedule/Myschedule.do 
+		},method = RequestMethod.GET)
+	public ModelAndView Form(@RequestParam(value = "type", required = false) String type, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
 	
-
-	if(uri.endsWith("Myschedule.do")) {
-		mav.setViewName("/schedule/Myschedule");
+		String uri = request.getRequestURI();
+		System.out.println(uri); ///plan/schedule/Myschedule.do 
 		
-	}else if(uri.endsWith("LoginForm.do")) {
-		mav.setViewName("/member/LoginForm");
+	
+		if(uri.endsWith("Myschedule.do")) {
+			mav.setViewName("/schedule/Myschedule");
+			
+		}else if(uri.endsWith("LoginForm.do")) {
+			mav.setViewName("/member/LoginForm");
+		}
+		
+		
+		return mav;
 	}
 	
 	
-	return mav;
-}
 }
