@@ -10,6 +10,13 @@
 <meta charset="UTF-8">
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
 	<script>
+		var request = $.ajax({
+			  url: "/production/monthPlan",
+			  method: "GET",
+			  dataType: "json"
+			});
+		
+		
 	  document.addEventListener('DOMContentLoaded', function() {
 	    // 캘린더 요소 가져오기
 	    var calendarEl = document.getElementById('calendar');
@@ -18,6 +25,7 @@
 	    var calendar = new FullCalendar.Calendar(calendarEl, {
 	      initialView: 'dayGridMonth', // 캘린더 초기 뷰 설정
 	      contentHeight: 600, // 캘린더 높이 설정
+	      locale : 'ko',
 	      events: [
 	        // 일정 데이터 추가, DB의 이벤트를 가져오려면 JSON 형식으로 변환하여 이곳에 추가
 	        {
