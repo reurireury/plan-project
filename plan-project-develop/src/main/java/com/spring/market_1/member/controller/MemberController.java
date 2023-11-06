@@ -4,13 +4,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.market_1.ObjectController;
@@ -45,15 +48,16 @@ public class MemberController implements ObjectController
 	/*회원가입*/
 	/* @ModelAttribute form의 데이터 처리할 때 사용 html의 태그명과 dto 일치한 경우 dto에 자동반영 */
 	@RequestMapping(value = "/member/AddObject.do", method = RequestMethod.POST)
-	public ModelAndView AddObject(@ModelAttribute("member") MemberDTO member, HttpServletRequest request,
+	public String AddObject(@ModelAttribute("member") MemberDTO member, HttpServletRequest request,
 	        HttpServletResponse response) throws Exception {
+		String uri = request.getRequestURI();
+		System.out.println(uri); 
 		String id = request.getParameter("id");
 		System.out.println(id);
-		
 		memberService.AddObject(member);
 		
-		
-		return null;
+	    String prepath = request.getParameter("path");
+		return  "redirect:" + prepath;
 	}
 
 
@@ -104,10 +108,43 @@ public class MemberController implements ObjectController
 		}else if(uri.endsWith("LoginForm.do")) {
 			mav.setViewName("/member/LoginForm");
 		}
-		
-		
-		
 		return mav;
+	}
+	
+		/* 	@ResponseBody 비동기식 처리인 경우 사용*/
+		@ResponseBody
+	    @RequestMapping(value = "/member/Login.do", method = { 
+	    		RequestMethod.POST})
+	    public String login(@RequestParam("id")String id,
+	    						@RequestParam("pwd") String pwd, 
+	    						HttpServletRequest request, HttpServletResponse response,Model model) throws Exception {
+			String uri = request.getRequestURI();
+			System.out.println(uri); 
+			
+	    	System.out.println("전달받은 값 : "+id+","+pwd);
+	        System.out.println("로그인버튼 누름");
+	        
+	        HttpSession session = request.getSession();
+	        String result = "";
+	        
+	        //로그인검증
+	        MemberDTO loginResult = memberService.login(id, pwd);
+	        if(loginResult==null) {
+	        	System.out.println("값을 가져오지 못함");
+	        	result = "fail";
+	        }else {
+	        	System.out.println("로그인일치");
+	        	session.setAttribute("member", loginResult);
+	        	System.out.println(loginResult);
+	        	result="success";
+	        	
+	        }
+	    	System.out.println("리턴되는 값 : " + loginResult.getId());
+	    	System.out.println("리턴되는 값 : " + loginResult.getPwd());
+	        System.out.println("result - > "+loginResult);
+	        return result;
+	    	
+
 	}
 	
 }
