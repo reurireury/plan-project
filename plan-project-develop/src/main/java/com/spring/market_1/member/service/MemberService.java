@@ -63,5 +63,10 @@ public class MemberService implements ObjectService
 		return 0;
 	}
 
+	/* 로그인 */
+	public MemberDTO login(String id, String pwd) {
+		return 	memberDAO.login(id,pwd);
+	}
+
 	
 }

@@ -1,5 +1,6 @@
 package com.spring.market_1.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -72,8 +73,17 @@ public class MemberDAO implements ObjectDAO
 
 	@Override
 	public int SearchObject() throws Exception {
-	
+		
 		return 0;
+	}
+
+	/* 로그인 */
+	public MemberDTO login(String id, String pwd) {
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("id", id);
+		data.put("pwd", pwd);
+		return sqlSession.selectOne(namespace+"LoginCheck",data);
+		
 	}
 
 	
