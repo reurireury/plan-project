@@ -10,71 +10,66 @@
 <meta charset="UTF-8">
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
 	<script>
-		var request = $.ajax({
-			  url: "/production/monthPlan",
-			  method: "GET",
-			  dataType: "json"
-			});
-		
-		
-	  document.addEventListener('DOMContentLoaded', function() {
-	    // 캘린더 요소 가져오기
-	    var calendarEl = document.getElementById('calendar');
-	
-	    // FullCalendar 인스턴스 생성
-	    var calendar = new FullCalendar.Calendar(calendarEl, {
-	      initialView: 'dayGridMonth', // 캘린더 초기 뷰 설정
-	      contentHeight: 600, // 캘린더 높이 설정
-	      locale : 'ko',
-	      events: [
-	        // 일정 데이터 추가, DB의 이벤트를 가져오려면 JSON 형식으로 변환하여 이곳에 추가
-	        {
-	          title: '일정',
-	          start: '2023-11-06 00:00:00',
-	          end: '2023-11-08 24:00:00',
-	          // 색상을 변경하려면 'color' 속성을 추가할 수 있음
-	        }
-	      ],
-	      headerToolbar: {
-	        center: 'addEventButton' // 헤더에 버튼 추가
-	      },
-	      customButtons: {
-	        addEventButton: {
-	          text: "내 스케줄 추가", // 버튼 내용
-	          click: function() { // 버튼 클릭 시 이벤트 추가
-	            $("#calendarModal").modal("show"); // 모달 표시
-	
-	            $("#addCalendar").on("click", function() { // 모달의 추가 버튼 클릭 시
-	              var content = $("#calendar_content").val();
-	              var start_date = $("#calendar_start_date").val();
-	              var end_date = $("#calendar_end_date").val();
-	
-	              // 내용 입력 여부 확인
-	              if (content == null || content == "") {
-	                alert("내용을 입력하세요.");
-	              } else if (start_date == "" || end_date == "") {
-	                alert("날짜를 입력하세요.");
-	              } else if (new Date(end_date) - new Date(start_date) < 0) { // 날짜 비교
-	                alert("종료일이 시작일보다 먼저입니다.");
-	              } else { // 정상적인 입력일 때
-	                var obj = {
-	                  "title": content,
-	                  "start": start_date,
-	                  "end": end_date
-	                }; // 전송할 객체 생성
-	
-	                console.log(obj); // 서버로 해당 객체를 전달하여 DB 연동 가능
-	              }
-	            });
-	          }
-	        }
-	      },
-	    });
-	
-	    // 캘린더 렌더링
-	    calendar.render();
-	  });
-	</script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 캘린더 요소 가져오기
+            var calendarEl = document.getElementById('calendar');
+
+            // FullCalendar 인스턴스 생성
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth', // 캘린더 초기 뷰 설정
+                contentHeight: 600, // 캘린더 높이 설정
+                locale: 'ko',
+                events: [
+                    // 일정 데이터 추가, DB의 이벤트를 가져오려면 JSON 형식으로 변환하여 이곳에 추가
+                    {
+                        title: '일정',
+                        start: '2023-11-06 00:00:00',
+                        end: '2023-11-08 24:00:00',
+                        // 색상을 변경하려면 'color' 속성을 추가할 수 있음
+                    }
+                ],
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                },
+                customButtons: {
+                    addEventButton: {
+                        text: "내 스케줄 추가", // 버튼 내용
+                        click: function () { // 버튼 클릭 시 이벤트 추가
+                            $("#calendarModal").modal("show"); // 모달 표시
+
+                            $("#addCalendar").on("click", function () { // 모달의 추가 버튼 클릭 시
+                                var content = $("#calendar_content").val();
+                                var start_date = $("#calendar_start_date").val();
+                                var end_date = $("#calendar_end_date").val();
+
+                                // 내용 입력 여부 확인
+                                if (content == null || content == "") {
+                                    alert("내용을 입력하세요.");
+                                } else if (start_date == "" || end_date == "") {
+                                    alert("날짜를 입력하세요.");
+                                } else if (new Date(end_date) - new Date(start_date) < 0) { // 날짜 비교
+                                    alert("종료일이 시작일보다 먼저입니다.");
+                                } else { // 정상적인 입력일 때
+                                    var obj = {
+                                        "title": content,
+                                        "start": start_date,
+                                        "end": end_date
+                                    }; // 전송할 객체 생성
+
+                                    console.log(obj); // 서버로 해당 객체를 전달하여 DB 연동 가능
+                                }
+                            });
+                        }
+                    }
+                },
+            });
+
+            // 캘린더 렌더링
+            calendar.render();
+        });
+    </script>
 
 <title>내 스케줄 관리페이지</title>
 </head>
