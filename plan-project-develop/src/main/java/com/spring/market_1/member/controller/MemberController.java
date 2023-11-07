@@ -67,34 +67,55 @@ public class MemberController implements ObjectController
 		return null;
 	}
 
+	/* 마이페이지 */
 	@Override
 	public ModelAndView ModObject() throws Exception {
 		
 		return null;
 	}
-
+	
+	
+	/*마이페이지 수정 반영*/
 	@Override
 	public ModelAndView UpdateObject() throws Exception {
 		
 		return null;
 	}
 
+	 @RequestMapping(value = "/member/UpdateObject.do", method = {
+		        RequestMethod.GET,
+		        RequestMethod.POST
+		    })
+	 
+	 /* @RequestParam 파라미터 이름으로 바인딩*/
+	public ModelAndView UpdateObject(@RequestParam("id") String id,
+			@ModelAttribute("member") MemberDTO member,HttpServletRequest request) throws Exception {
+		String uri = request.getRequestURI();
+		System.out.println(uri); 
+		 
+		memberService.UpdateObject(member);
+		ModelAndView mav = new ModelAndView("redirect:/member/MypageForm.do?id="+id);
+		
+		return mav;
+	}
+
+	
 	@Override
 	public ModelAndView SearchObject() throws Exception {
 		
 		return null;
 	}
 
-	//로그인폼 및 회원가입폼으로 이동을 위한
+	//jsp페이지 이동 위한 
 	@Override
 	public ModelAndView Form() throws Exception {
 		
 		return null;
 	}
-	
 	@RequestMapping(value = {
 		        "/member/JoinForm.do",
-		        "/member/LoginForm.do"
+		        "/member/LoginForm.do",
+		        "/member/MypageForm.do"
 		    },method = RequestMethod.GET)
 	public ModelAndView Form(@RequestParam(value = "type", required = false) String type, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -107,44 +128,71 @@ public class MemberController implements ObjectController
 			
 		}else if(uri.endsWith("LoginForm.do")) {
 			mav.setViewName("/member/LoginForm");
+		}else if(uri.endsWith("MypageForm.do")) {
+			mav.setViewName("/member/MypageForm");
 		}
 		return mav;
 	}
-	
-		/* 	@ResponseBody 비동기식 처리인 경우 사용*/
-		@ResponseBody
-	    @RequestMapping(value = "/member/Login.do", method = { 
-	    		RequestMethod.POST})
-	    public String login(@RequestParam("id")String id,
-	    						@RequestParam("pwd") String pwd, 
-	    						HttpServletRequest request, HttpServletResponse response,Model model) throws Exception {
-			String uri = request.getRequestURI();
-			System.out.println(uri); 
-			
-	    	System.out.println("전달받은 값 : "+id+","+pwd);
-	        System.out.println("로그인버튼 누름");
-	        
-	        HttpSession session = request.getSession();
-	        String result = "";
-	        
-	        //로그인검증
-	        MemberDTO loginResult = memberService.login(id, pwd);
-	        if(loginResult==null) {
-	        	System.out.println("값을 가져오지 못함");
-	        	result = "fail";
-	        }else {
-	        	System.out.println("로그인일치");
-	        	session.setAttribute("member", loginResult);
-	        	System.out.println(loginResult);
-	        	result="success";
-	        	
-	        }
-	    	System.out.println("리턴되는 값 : " + loginResult.getId());
-	    	System.out.println("리턴되는 값 : " + loginResult.getPwd());
-	        System.out.println("result - > "+loginResult);
-	        return result;
-	    	
-
+	/* 	@ResponseBody 비동기식처리인 경우 사용 */
+	@ResponseBody
+    @RequestMapping(value = "/member/Login.do", method = { 
+    		RequestMethod.POST})
+    public String Login(@RequestParam("id")String id,
+    						@RequestParam("pwd") String pwd, 
+    						HttpServletRequest request, HttpServletResponse response,Model model) throws Exception {
+		String uri = request.getRequestURI();
+		System.out.println(uri); 
+		
+    	System.out.println("전달받은 값 : "+id+","+pwd);
+        System.out.println("로그인버튼 누름");
+        
+        HttpSession session = request.getSession();
+        String result = "";
+        
+        //로그인검증
+        MemberDTO loginResult = memberService.Login(id, pwd);
+        if(loginResult==null) {
+        	System.out.println("값을 가져오지 못함");
+        	result = "fail";
+        }else {
+        	System.out.println("로그인일치");
+        	session.setAttribute("member", loginResult);
+        	System.out.println(loginResult);
+        	result="success";
+        	
+        }
+    	System.out.println("리턴되는 값 : " + loginResult.getId());
+    	System.out.println("리턴되는 값 : " + loginResult.getPwd());
+        System.out.println("result - > "+loginResult);
+        return result;						
+	    
+	}
+		
+		
+		
+	/* 로그아웃 */
+	@RequestMapping(value = "/member/LogOut.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String LogOut(HttpSession session,HttpServletRequest request,Model model)throws Exception {
+        session.invalidate();
+        model.addAttribute("logoutMessage", "로그아웃되었습니다.");
+        return "redirect:/";
 	}
 	
+	/* 아이디 중복검사 */
+	@ResponseBody
+	@RequestMapping(value = "/member/IdCheck.do", method = { RequestMethod.GET,
+    		RequestMethod.POST})
+	 public int IdCheck(@RequestParam("id")String id,HttpServletRequest request) {
+		String IdCheck=memberService.IdCheck(id);
+		int result=0;
+		if(IdCheck==null) {
+			System.out.println("일치하는 정보 없음");
+			result=1;
+		}else {
+			result=0;
+		}
+		
+		return result;
+	}
+		
 }

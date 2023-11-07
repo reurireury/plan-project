@@ -9,8 +9,6 @@
 	
 </head>
 <body>	
-
-
 	<nav>
  		<jsp:include page="../include/nav.jsp"/>
 	</nav>
@@ -78,9 +76,6 @@
 	            
 	        }) //form1
 	    });
-	   
-	  
-	   
 	</script>
 	
 	<footer>
