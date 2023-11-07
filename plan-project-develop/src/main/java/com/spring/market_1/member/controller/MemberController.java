@@ -180,7 +180,7 @@ public class MemberController implements ObjectController
 	
 	/* 아이디 중복검사 */
 	@ResponseBody
-	@RequestMapping(value = "/member/IdCheck.do", method = { 
+	@RequestMapping(value = "/member/IdCheck.do", method = { RequestMethod.GET,
     		RequestMethod.POST})
 	 public int IdCheck(@RequestParam("id")String id,HttpServletRequest request) {
 		String IdCheck=memberService.IdCheck(id);
