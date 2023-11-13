@@ -17,6 +17,7 @@ public class ScheduleService  implements ObjectService{
 	/* 캘린더 보기(전체) */
 	@Override
 	public List ListObjects() throws DataAccessException {
+		System.out.println("sevice");
 		return scheduleDAO.ListObjects();
 	}
 

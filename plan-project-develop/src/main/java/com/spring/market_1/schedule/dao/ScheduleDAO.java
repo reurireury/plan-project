@@ -11,6 +11,9 @@ import com.spring.market_1.ObjectDAO;
 import com.spring.market_1.schedule.dto.ScheduleDTO;
 
 
+
+
+
 @Controller("scheduleDAO")
 public class ScheduleDAO implements ObjectDAO{
 	@Autowired
@@ -20,6 +23,7 @@ public class ScheduleDAO implements ObjectDAO{
 	/* 캘린더 일정보기(전체) */
 	@Override
 	public List ListObjects() throws DataAccessException {
+		System.out.println("dao");
 		List<ScheduleDTO> schedule=null;
 		schedule=sqlSession.selectList("scheduleList");
 		return schedule;
