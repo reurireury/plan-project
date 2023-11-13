@@ -56,7 +56,12 @@ public class MemberService implements ObjectService
 	
 		return 0;
 	}
+	/* 회원정보 수정 */
+	public void UpdateObject(MemberDTO member) throws DataAccessException {
+		memberDAO.UpdateObject(member);
+	}
 
+	
 	@Override
 	public int SearchObject() throws Exception {
 	
@@ -64,8 +69,13 @@ public class MemberService implements ObjectService
 	}
 
 	/* 로그인 */
-	public MemberDTO login(String id, String pwd) {
-		return 	memberDAO.login(id,pwd);
+	public MemberDTO Login(String id, String pwd) {
+		return 	memberDAO.Login(id,pwd);
+	}
+
+	/* 아이디 중복 검사*/
+	public String IdCheck(String id) {
+		return memberDAO.IdCheck(id);
 	}
 
 	
