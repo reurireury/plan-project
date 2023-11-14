@@ -1,11 +1,14 @@
 package com.spring.market_1.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.market_1.ObjectDAO;
 import com.spring.market_1.member.dto.MemberDTO;
@@ -64,17 +67,40 @@ public class MemberDAO implements ObjectDAO
 		return 0;
 	}
 
+	/* 회원정보 수정 */
 	@Override
 	public int UpdateObject() throws DataAccessException {
 	
 		return 0;
 	}
+	/* @RequestParam 파라미터 이름으로 바인딩*/
+	public void UpdateObject(MemberDTO member) {
+		sqlSession.update(namespace+"UpdateMember",member);
+	}
 
 	@Override
 	public int SearchObject() throws Exception {
-	
+		
 		return 0;
 	}
+
+	/* 로그인 */
+	public MemberDTO Login(String id, String pwd) {
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("id", id);
+		data.put("pwd", pwd);
+		return sqlSession.selectOne(namespace+"Login",data);
+		
+	}
+
+	/* 아이디 중복 검사 */
+	public String IdCheck(String id) {
+		return sqlSession.selectOne(namespace+"IdCheck", id);
+	}
+
+	
+	
+	
 
 	
 	

@@ -2,26 +2,70 @@
 <!DOCTYPE mapper
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-   
+ <!-- 
+ 	mapper 리턴 타입 지정
+ 	resultMap
+ 
+ 
+ 
+  -->  
 <mapper namespace="mapper.member">
-	<resultMap id="memResult" type="memberDTO">
+	<resultMap id="memResult" type="MemberDTO">
 		<result property="id" column="id"/>
 		<result property="pwd" column="pwd"/>
 		<result property="name" column="name"/>
 		<result property="addr" column="addr"/>
 		<result property="phone" column="phone"/>
-		<result property="joinDate" column="joinDate"/>
+		<result property="birth" column="birth"/>
+		<result property="postcode" column="postcode"/>
+		<result property="detailAddress" column="detailaddress"/>
+		<result property="extraAddress" column="extraaddress"/>
+		<result property="email" column="email"/>
+		<result property="image" column="image"/>
 	</resultMap>
 	
-	<select id="selectAllMemberList" resultMap="memResult">
-		<![CDATA[select * from m_member order by joinDate desc]]>
-	</select>
-	
-	<insert id="insertMember" parameterType="memberDTO">
-		<![CDATA[insert into m_member(id, pwd, name, addr, phone) values(#{id}, #{pwd}, #{name}, #{addr}, #{phone})]]>
+	<!-- 회원가입 -->
+	<insert id="AddMember" parameterType="MemberDTO">
+		<![CDATA[
+			insert into member
+				(id,pwd,name,addr,phone,birth,postcode,detailAddress,extraAddress,email)
+		]]>
+			 values(
+				#{id},#{pwd},#{name},#{addr},#{phone},#{birth},
+				#{postcode},#{detailAddress},#{extraAddress},#{email}
+			)
 	</insert>
 	
-	<delete id="deleteMember" parameterType="String">
-		<![CDATA[delete from  m_member where id = #{id}]]>
-	</delete>
+	<!-- 로그인 -->
+	<select id="Login" parameterType="hashMap" resultType="MemberDTO">
+			select *
+			from member
+			where
+			id=#{id} and pwd=#{pwd}
+			
+	</select>
+	<!-- 아이디 중복 검사 -->
+	<select id="IdCheck" resultType="String">
+			select id
+			from member
+			where
+			id = #{id} 
+	</select>
+	
+	<update id="UpdateMember" parameterType="MemberDTO">
+		<![CDATA[
+		    UPDATE member
+		    SET 
+		    pwd=#{pwd}, phone=#{phone}, addr=#{addr}
+		     WHERE id=#{id}
+	    ]]>
+	
+	
+	</update>
+	
+	
+	
+	
+	
+	
 </mapper>
