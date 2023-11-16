@@ -90,7 +90,7 @@
                             data: {
                                 title: title,
                                 start1: formattedStart,
-                                end1: formattedEnd
+                                end1: formattedEnd,
                             },
                             success: function(response) {
                                 console.log("일정이 성공적으로 추가되었습니다.");
