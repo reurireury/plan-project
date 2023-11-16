@@ -43,7 +43,7 @@ public class ScheduleDAO implements ObjectDAO{
 	/*일정추가*/
 	public int AddObject(ScheduleDTO scheduleDTO) throws DataAccessException {
 		System.out.println("dao");
-		sqlSession.insert("AddSchedule");
+		sqlSession.insert("AddSchedule",scheduleDTO);
 		return 0;
 	}
 

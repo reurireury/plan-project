@@ -4,6 +4,7 @@ package com.spring.market_1.schedule.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,20 +122,17 @@ public class ScheduleController implements ObjectController{
 		return null;
 	}
 	@RequestMapping(value="/schedule/AddObject.do", method=RequestMethod.POST)
-	@ResponseBody  
+	@ResponseBody 
 	public ModelAndView AddObject(ScheduleDTO scheduleDTO,HttpServletRequest request) throws Exception {
 		   String uri = request.getRequestURI();
 		    System.out.println(uri);
-		    String title=request.getParameter("title");
-		    String start=request.getParameter("start");
-		    String end=request.getParameter("end");
+		    
+		    System.out.println("title"+scheduleDTO.getTitle());
+		    System.out.println("start1"+scheduleDTO.getStart1());
+		    System.out.println("end1"+scheduleDTO.getEnd1());
 		    
 		    System.out.println(scheduleDTO);
-		    System.out.print("title,start,end "+title+","+start+","+end);
 		    scheduleService.AddObject(scheduleDTO);
-		    
-		
-		
 		return null;
 	}
 

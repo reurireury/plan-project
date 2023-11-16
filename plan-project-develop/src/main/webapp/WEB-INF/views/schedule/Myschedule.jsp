@@ -26,6 +26,8 @@
 	<!-- fullcalendar -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fullcalendar@5.7.0/main.min.js"></script>
+    <!-- luxon lib -->
+	<script src='https://cdn.jsdelivr.net/npm/luxon@1.24.1/build/global/luxon.min.js'></script>
 
 	<!-- 
 	<script>
@@ -69,10 +71,15 @@
                 select: function (arg) { // 캘린더에서 이벤트를 생성할 수 있다.
                     var title = prompt('일정을 입력해주세요.');
                     if (title) {
-                        calendar.addEvent({
+                        
+                    	 var formattedStart = luxon.DateTime.fromJSDate(arg.start).toFormat('yyyy-MM-dd');
+                         var formattedEnd = luxon.DateTime.fromJSDate(arg.end).minus({ days: 1 }).toFormat('yyyy-MM-dd');
+
+                    	
+                    	calendar.addEvent({
                             title: title,
-                            start: arg.start,
-                            end: arg.end,
+                            start: formattedStart,
+                            end: formattedEnd,
                         });
 
                         // 여기에서 서버로 일정을 추가하는 Ajax 요청을 보낼 수 있습니다.
@@ -82,9 +89,8 @@
                             url: "${pageContext.request.contextPath}/schedule/AddObject.do",
                             data: {
                                 title: title,
-                                start: arg.start,
-                                end: arg.end,
-                                allDay: arg.allDay
+                                start1: formattedStart,
+                                end1: formattedEnd
                             },
                             success: function(response) {
                                 console.log("일정이 성공적으로 추가되었습니다.");
