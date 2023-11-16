@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Component("scheduleDTO")
 public class ScheduleDTO { 
 	
@@ -22,11 +24,15 @@ public class ScheduleDTO {
 	
 	
 	*/
-	
+	@JsonProperty("id")
 	private String id; //로그인
+	@JsonProperty("title")
 	private String title; //제목
+	@JsonProperty("content")
 	private String content; //내용
+	@JsonProperty("start")
 	private Date start1;//시작일
+	@JsonProperty("end")
 	private Date end1;//종료일
 	
 	public String getId() {
