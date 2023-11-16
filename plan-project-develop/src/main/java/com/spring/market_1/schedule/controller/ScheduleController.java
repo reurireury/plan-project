@@ -1,5 +1,7 @@
 package com.spring.market_1.schedule.controller;
 
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -41,47 +43,97 @@ public class ScheduleController implements ObjectController{
 		return null;
 	}
 		/* 캘린더 일정보기 */
+	/*
 	@RequestMapping(value="/schedule/ListObjects.do", method=RequestMethod.GET)
-	public JSONArray  ListObjects(HttpServletRequest request) throws Exception {
+	@ResponseBody
+	public List<Map<String, Object>>  ListObjects(HttpServletRequest request) throws Exception {
 	    String uri = request.getRequestURI();
 	    System.out.println(uri); 
 
-	    List<ScheduleDTO> scheduleList = scheduleService.ListObjects();
-	    
-	    
+	    List<Map<String, Object>> scheduleList = scheduleService.ListObjects();
+	    if(scheduleList.isEmpty()) {
+	    	System.out.println("값 없음");
+	    }
+	    JSONObject jsonObj=new JSONObject();
 	    JSONArray jsonArray = new JSONArray();
-	 
-	    
-	    for (ScheduleDTO schedule : scheduleList) {
-			Map<String, Object> oneReserve = new HashMap<>();
-			  
-				oneReserve.put("title", schedule.getTitle()); //map에 담은 후
-				System.out.println("원리버스"+oneReserve);
-				System.out.println("스케줄타이틀"+schedule.getTitle());
-				
-				oneReserve.put("start1", schedule.getStart1());
-				oneReserve.put("end1", schedule.getEnd1());
-				JSONObject jsonObj = new JSONObject(oneReserve); //obj에 담고
-				jsonArray.add(jsonObj); //obj를 array에 담는다.
-				
-				System.out.println("원리버스: " + oneReserve);
-		        System.out.println("스케줄타이틀: " + schedule.getTitle());
-		        System.out.println("JSON 객체: " + jsonObj);
-
+	   
+	    Map<String, Object> hash = new HashMap<String, Object>();
+    	
+	    for (int i=0;i<scheduleList.size();i++) {
+	    	
+	    		hash.put("title", ((ScheduleDTO) scheduleList.get(i)).getTitle());
+	    		hash.put("start", ((ScheduleDTO) scheduleList.get(i)).getStart1());
+	    		hash.put("end", ((ScheduleDTO) scheduleList.get(i)).getEnd1());
+	    		
+	    		//7hash.put("title",scheduleList.get(i).get("title"));
+	    		//7hash.put("start1",scheduleList.get(i).get("start1"));
+	    		//7hash.put("end1",scheduleList.get(i).get("end1"));
+	    		
+	    		jsonObj=new JSONObject(hash); //{}
+	    		jsonArray.add(jsonObj); //[]
+	    	    
 		 }
+	    System.out.println("jsonArrCheck:"+jsonArray);
+	    return jsonArray;
+	}
+*/
+	@RequestMapping(value="/schedule/ListObjects.do", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Map<String, Object>> listObjects(HttpServletRequest request) throws Exception {
+	    String uri = request.getRequestURI();
+	    System.out.println(uri);
+
+	    List<Map<String, Object>> scheduleList = scheduleService.ListObjects();
+	    if(scheduleList.isEmpty()) {
+	        System.out.println("값 없음");
+	    }
+		JSONObject jsonObj = new JSONObject();
+	    JSONArray jsonArray = new JSONArray();
+	    Map<String, Object> hash = new HashMap<>();
+	    
+	    for (int i = 0; i < scheduleList.size(); i++) {
+		    
+				hash.put("title", ((ScheduleDTO) scheduleList.get(i)).getTitle());
+	    		hash.put("start", ((ScheduleDTO) scheduleList.get(i)).getStart1());
+	    		hash.put("end", ((ScheduleDTO) scheduleList.get(i)).getEnd1());
+
+	    		jsonObj=new JSONObject(hash);
+	        jsonArray.add(jsonObj); 
+	    }
+
+	    System.out.println("jsonArrCheck:" + jsonArray);
 	    return jsonArray;
 	}
 
-	
 	@Override
 	public ModelAndView SelectObjects() throws Exception {
 		
 		return null;
 	}
 
-	
+	/*일정추가*/
+
 	@Override
 	public ModelAndView AddObject() throws Exception {
+		
+		
+		
+		return null;
+	}
+	@RequestMapping(value="/schedule/AddObject.do", method=RequestMethod.POST)
+	@ResponseBody  
+	public ModelAndView AddObject(ScheduleDTO scheduleDTO,HttpServletRequest request) throws Exception {
+		   String uri = request.getRequestURI();
+		    System.out.println(uri);
+		    String title=request.getParameter("title");
+		    String start=request.getParameter("start");
+		    String end=request.getParameter("end");
+		    
+		    System.out.println(scheduleDTO);
+		    System.out.print("title,start,end "+title+","+start+","+end);
+		    scheduleService.AddObject(scheduleDTO);
+		    
+		
 		
 		return null;
 	}
