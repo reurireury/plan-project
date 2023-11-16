@@ -24,16 +24,14 @@ public class ScheduleDTO {
 	
 	
 	*/
-	@JsonProperty("id")
+	
 	private String id; //로그인
-	@JsonProperty("title")
 	private String title; //제목
-	@JsonProperty("content")
 	private String content; //내용
-	@JsonProperty("start")
-	private Date start1;//시작일
-	@JsonProperty("end")
-	private Date end1;//종료일
+	@JsonProperty("formattedStart")
+	private String start1;//시작일
+	@JsonProperty("formattedEnd")
+	private String end1;//종료일
 	
 	public String getId() {
 		return id;
@@ -53,16 +51,16 @@ public class ScheduleDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getStart1() {
+	public String getStart1() {
 		return start1;
 	}
-	public void setStart1(Date start1) {
+	public void setStart1(String start1) {
 		this.start1 = start1;
 	}
-	public Date getEnd1() {
+	public String getEnd1() {
 		return end1;
 	}
-	public void setEnd1(Date end1) {
+	public void setEnd1(String end1) {
 		this.end1 = end1;
 	}
 	
