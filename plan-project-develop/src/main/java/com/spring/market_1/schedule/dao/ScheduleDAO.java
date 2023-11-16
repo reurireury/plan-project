@@ -1,6 +1,7 @@
 package com.spring.market_1.schedule.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,9 @@ public class ScheduleDAO implements ObjectDAO{
 	
 	/* 캘린더 일정보기(전체) */
 	@Override
-	public List ListObjects() throws DataAccessException {
+	public  List<Map<String, Object>> ListObjects() throws DataAccessException {
 		System.out.println("dao");
-		List<ScheduleDTO> schedule=null;
+		 List<Map<String, Object>> schedule=null;
 		schedule=sqlSession.selectList("scheduleList");
 		return schedule;
 	}
@@ -37,7 +38,12 @@ public class ScheduleDAO implements ObjectDAO{
 
 	@Override
 	public int AddObject() throws DataAccessException {
-		
+		return 0;
+	}
+	/*일정추가*/
+	public int AddObject(ScheduleDTO scheduleDTO) throws DataAccessException {
+		System.out.println("dao");
+		sqlSession.insert("AddSchedule");
 		return 0;
 	}
 
