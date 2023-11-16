@@ -3,6 +3,7 @@ package com.spring.market_1;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +18,8 @@ public interface ObjectController
 	public ModelAndView SearchObject() throws Exception; //검색
 
 	public ModelAndView Form() throws Exception; //폼페이지 로딩
+	
+	
 	
  
 }

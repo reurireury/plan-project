@@ -14,6 +14,7 @@
 		<a href="${pageContext.request.contextPath}/member/MypageForm.do?id=${member.id}" class="join">마이페이지</a>
 		<a href="${pageContext.request.contextPath}/member/LogOut.do" class="logout">로그아웃</a>
 		<a href="${pageContext.request.contextPath}/schedule/Myschedule.do" class="schedule">스케줄</a>
+		<a href="${pageContext.request.contextPath}/gift/GiftList.do" class="gift">선물하기</a>
 	</c:if>
 	<%-- 로그아웃 알림--%>
 	<% if (request.getAttribute("logoutMessage") != null) { %>
