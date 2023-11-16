@@ -128,6 +128,7 @@ public class ScheduleController implements ObjectController{
 		    System.out.println(uri);
 		    
 		    System.out.println("title"+scheduleDTO.getTitle());
+		    System.out.println("content"+scheduleDTO.getContent());
 		    System.out.println("start1"+scheduleDTO.getStart1());
 		    System.out.println("end1"+scheduleDTO.getEnd1());
 		    
