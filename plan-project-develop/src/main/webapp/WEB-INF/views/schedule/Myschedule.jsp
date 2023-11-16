@@ -137,7 +137,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="taskId" class="col-form-label">일정 내용</label>
+                        <label for="taskId" class="col-form-label">일정 233내용</label>
                         <input type="text" class="form-control" id="calendar_content" name="calendar_content">
                         <label for="taskId" class="col-form-label">시작 날짜</label>
                         <input type="date" class="form-control" id="calendar_start_date" name="calendar_start_date">
