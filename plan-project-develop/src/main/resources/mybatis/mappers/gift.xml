@@ -1,1 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="mapper.gift">
+	<resultMap id="giftResult" type="productDTO">
+		<result property="category1" column="category1"/>
+		<result property="category2" column="category2"/>
+		<result property="item_brand" column="item_brand"/>
+		<result property="item_name" column="item_name"/>
+		<result property="item_price" column="item_price"/>
+		<result property="item_image" column="item_image"/>
+	</resultMap>
+	
+	<select id="selectAllGift" resultMap="giftResult">
+		<![CDATA[select * from gift]]>
+	</select>
+
+</mapper>
