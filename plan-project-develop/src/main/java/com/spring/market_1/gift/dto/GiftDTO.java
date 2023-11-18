@@ -1,5 +1,8 @@
 package com.spring.market_1.gift.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component("giftDTO")
 public class GiftDTO {
 	String category1;
 	String category2;
