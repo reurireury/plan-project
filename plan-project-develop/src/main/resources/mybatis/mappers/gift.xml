@@ -3,7 +3,7 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.gift">
-	<resultMap id="giftResult" type="productDTO">
+	<resultMap id="giftResult" type="giftDTO">
 		<result property="category1" column="category1"/>
 		<result property="category2" column="category2"/>
 		<result property="item_brand" column="item_brand"/>
