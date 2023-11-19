@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.schedule">
+	<!-- 
+	<resultMap id="scheResult" type="scheduleDTO">
+		<result property="id" column="id"/>
+		<result property="groupid" column="groupid"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="start1" column="start1"/>
+		<result property="end1" column="end1"/>
+		<result property="allday" column="allday"/>
+		<result property="textcolor" column="textcolor"/>
+		<result property="backgroundcolor" column="backgroundcolor"/>
+		<result property="bordercolor" column="bordercolor"/>
+	</resultMap>
+	 -->
+	
+	<resultMap id="scheResult" type="com.spring.market_1.schedule.dto.ScheduleDTO">
+		<result property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="start1" column="start1"/>
+		<result property="end1" column="end1"/>
+	</resultMap>
+	
+	<select id="scheduleList" resultMap="scheResult">
+		<![CDATA[
+			select *  from schedule
+		]]>
+	</select>
+	
+	<insert id="AddSchedule" parameterType="com.spring.market_1.schedule.dto.ScheduleDTO">
+	    <![CDATA[
+	        INSERT INTO schedule (title,start1,end1,content) 
+	        VALUES
+        ]]>
+          (#{title},#{start1},#{end1},#{content})
+	   
+	</insert>
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+</mapper>

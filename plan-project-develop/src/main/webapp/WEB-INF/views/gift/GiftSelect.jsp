@@ -25,15 +25,13 @@
    
     <c:forEach var="gift" items="${giftList}" >     
    <tr align="center">
-      <td>${giftList.category1}</td>
-      <td>${giftList.category2}</td>
-      <td>${giftList.item_brand}</td>
-      <td>${giftList.item_name}</td>
-      <td>${giftList.item_price}</td>
-      <td>${giftList.item_image}</td>
-
-
-    </tr>
-  </c:forEach>  
+      <td>${gift.category1}</td>
+      <td>${gift.category2}</td>
+      <td>${gift.item_brand}</td>
+      <td>${gift.item_name}</td>
+      <td>${gift.item_price}</td>
+      <td>${gift.item_image}</td>
+   </tr>
+</c:forEach>
 </body>
 </html>
