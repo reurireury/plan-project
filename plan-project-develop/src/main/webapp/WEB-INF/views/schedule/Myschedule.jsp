@@ -106,7 +106,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                       		<label for="calendar_title" class="col-form-label">일정 제목</label>
+                       		<label for="calendar_title" class="col-form-label">일정 제목1</label>
                             <input type="text" class="form-control" id="calendar_title" name="calendar_title">
                             <label for="calendar_content" class="col-form-label">일정 내용</label>
                             <input type="text" class="form-control" id="calendar_content" name="calendar_content">
