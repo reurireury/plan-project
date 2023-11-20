@@ -13,7 +13,11 @@
 	</resultMap>
 	
 	<select id="selectAllGift" resultMap="giftResult">
-		<![CDATA[select * from gift]]>
+		<![CDATA[
+		select
+		 *
+		
+		 from gift]]>
 	</select>
 
 </mapper>
