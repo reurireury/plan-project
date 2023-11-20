@@ -33,9 +33,27 @@
                     selectable: true, // 날짜 선택 가능하도록 설정
                     select: function (arg) { // 캘린더에서 이벤트를 생성할 수 있다.
                         $('#calendarModal').modal('show');
+                       
                         $('#calendar_start_date').val(arg.startStr);
                         $('#calendar_end_date').val(arg.endStr);
-                    }
+                    },
+                    eventClick: function (info) {
+                    	var eventId = info.event.Title;
+                    	 var start = info.event.start.toISOString();                     	
+                    	
+                    	$('#calendarModal').modal('show');
+                    	var title = info.event.title;
+                   	    var content = info.event.extendedProps.content || ''; // extendedProps는 사용자 정의 속성을 담고 있을 수 있습니다.
+                   	    var start = info.event.startStr;
+                   	    var end = info.event.endStr;
+                   	// 모달에 일정 정보 표시
+                   	    $('#calendar_title').text(title);
+                   	    $('#calendar_content').text(content);
+                   	    $('#calendar_start_date').text(start);
+                   	    $('#calendar_end_date').text(end);
+                   
+
+                    },
                 });
 
                 // 추가 버튼 클릭 시
@@ -53,7 +71,7 @@
                             title: title,
                             start: formattedStart,
                             end: formattedEnd,
-                        });
+                        }); //
 
                         $.ajax({
                             type: "post",
@@ -66,15 +84,19 @@
                             },
                             success: function (response) {
                                 console.log("일정이 성공적으로 추가되었습니다.");
+                                location.reload(); //리로드를 통해 제목, 내용부분 반복되는 부분 수정 
+                                
                             },
                             error: function (error) {
                                 console.error("일정 추가 중 오류가 발생했습니다.");
                             }
-                        });
+                        }); //ajax
 
                         $('#calendarModal').modal('hide');
-                    }
+                    }//if
                 });
+                
+               
 
                 calendar.render();
             }); // function
@@ -106,7 +128,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                       		<label for="calendar_title" class="col-form-label">일정 제목1</label>
+                       		<label for="calendar_title" class="col-form-label">일정 제목</label>
                             <input type="text" class="form-control" id="calendar_title" name="calendar_title">
                             <label for="calendar_content" class="col-form-label">일정 내용</label>
                             <input type="text" class="form-control" id="calendar_content" name="calendar_content">
