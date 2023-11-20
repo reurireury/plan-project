@@ -30,7 +30,10 @@
       <td>${gift.item_brand}</td>
       <td>${gift.item_name}</td>
       <td>${gift.item_price}</td>
-      <td>${gift.item_image}</td>
+      <td><img src="${pageContext.request.contextPath}/resources/image/${gift.item_image}" alt="Gift Image" width="100" height="100"></td>
+      
+
+      
    </tr>
 </c:forEach>
 </body>
