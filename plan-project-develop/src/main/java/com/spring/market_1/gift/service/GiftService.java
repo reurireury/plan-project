@@ -20,7 +20,10 @@ public class GiftService implements ObjectService{
 		giftList = giftDAO.ListObjects();
 		return giftList;
 	}
-
+	public List searchGifts(String category1, String category2, String item_brand, String item_name) throws DataAccessException {
+		
+        return giftDAO.searchGifts(category1, category2, item_brand, item_name);
+    }
 	@Override
 	public String SelectObjects() throws DataAccessException {
 		// TODO Auto-generated method stub

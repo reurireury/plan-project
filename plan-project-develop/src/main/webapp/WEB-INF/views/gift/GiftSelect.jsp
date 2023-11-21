@@ -13,6 +13,22 @@
 <title>선물선택</title>
 </head>
 <body>
+<form action="${pageContext.request.contextPath}/gift/search.do" method="get">
+  <label for="category1">카테고리1:</label>
+  <input type="text" id="category1" name="category1">
+  
+  <label for="category2">카테고리2:</label>
+  <input type="text" id="category2" name="category2">
+  
+  <label for="item_brand">브랜드:</label>
+  <input type="text" id="item_brand" name="item_brand">
+  
+  <label for="item_name">상품명:</label>
+  <input type="text" id="item_name" name="item_name">
+  
+  <button type="submit">검색</button>
+</form>
+
 <table border="1"  align="center"  width="80%">
     <tr align="center"   bgcolor="lightgreen">
       <td ><b>카테고리1</b></td>

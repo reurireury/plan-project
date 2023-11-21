@@ -20,6 +20,16 @@ public class GiftDAO implements ObjectDAO{
 		giftList = sqlSession.selectList("mapper.gift.selectAllGift");
 		return giftList;
 	}
+	
+	public List<GiftDTO> searchGifts(String category1, String category2, String item_brand, String item_name) throws DataAccessException {
+        GiftDTO searchParams = new GiftDTO();
+        searchParams.setCategory1(category1);
+        searchParams.setCategory2(category2);
+        searchParams.setItem_brand(item_brand);
+        searchParams.setItem_name(item_name);
+
+        return sqlSession.selectList("mapper.gift.searchGifts", searchParams);
+    }
 
 	@Override
 	public String SelectObjects() throws DataAccessException {
