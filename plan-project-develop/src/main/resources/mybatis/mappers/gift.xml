@@ -19,5 +19,14 @@
 		
 		 from gift]]>
 	</select>
-
+	
+	<select id="searchGifts" resultMap="giftResult">
+        SELECT *
+        FROM gift
+        WHERE
+            category1 = #{category1, jdbcType=VARCHAR}
+            AND category2 = #{category2, jdbcType=VARCHAR}
+            AND item_brand = #{item_brand, jdbcType=VARCHAR}
+            AND item_name LIKE '%' || #{item_name, jdbcType=VARCHAR} || '%'
+    </select>
 </mapper>

@@ -39,6 +39,25 @@ public class GiftController implements ObjectController{
 		return mav;
 
 	}
+	
+	@RequestMapping(value = "/gift/search.do", method = RequestMethod.GET)
+    public ModelAndView searchGifts(
+            @RequestParam(value = "category1", required = false) String category1,
+            @RequestParam(value = "category2", required = false) String category2,
+            @RequestParam(value = "item_brand", required = false) String item_brand,
+            @RequestParam(value = "item_name", required = false) String item_name
+    ) throws Exception {
+        String viewName = "/gift/SearchResults"; // Set the view name for search results
+        System.out.println("서치 실행");
+        // Call the service method to get the filtered list of gifts
+        List searchResults = giftService.searchGifts(category1, category2, item_brand, item_name);
+
+        // Add the search results to the model
+        ModelAndView mav = new ModelAndView(viewName);
+        mav.addObject("giftList", searchResults);
+
+        return mav;
+    }
 
 	
 
